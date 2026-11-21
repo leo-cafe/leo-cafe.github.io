@@ -1,0 +1,67 @@
+:root{
+  --bg:#fffaf0; --surface:#ffffff; --ink:#2a1b13; --muted:#7a6656; --line:#e6d5bd;
+  --saffron:#f2a424; --saffron-ink:#2a1b13; --accent:#b8470f;
+  --nav:56px; --gx:max(1rem,env(safe-area-inset-left),env(safe-area-inset-right));
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a110c; --surface:#26190f; --ink:#f7ead7; --muted:#b9a58f; --line:#46331f; --accent:#ff9a5c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{--bg:#1a110c;--surface:#26190f;--ink:#f7ead7;--muted:#b9a58f;--line:#46331f;--accent:#ff9a5c;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--nav) + 8px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Cairo",system-ui,"Segoe UI",Tahoma,sans-serif;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--saffron);z-index:30}
+header{background:var(--saffron);color:var(--saffron-ink);padding:1.1rem var(--gx) 2rem;text-align:center;position:relative}
+header::after{content:"";position:absolute;inset:auto 0 -1px;height:18px;background:var(--bg);clip-path:ellipse(60% 100% at 50% 100%)}
+.logo{display:block;width:84px;height:84px;margin:0 auto .4rem;border-radius:50%}
+.brand{font:700 2.6rem/1 "Reem Kufi","Cairo",sans-serif;margin:0}
+.brand small{display:block;font-size:.45em;font-weight:500;margin-top:.1em}
+.tag{margin:.5rem 0 0;font-size:1.05rem;font-weight:600}
+.loc{display:inline-block;margin-top:.5rem;padding:.1rem .8rem;border:1.5px solid currentColor;border-radius:99px;font-size:.85rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:var(--nav);background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+nav::-webkit-scrollbar{display:none}
+nav ul{list-style:none;margin:0;padding:0 var(--gx);height:100%;display:flex;align-items:center;gap:.5rem;width:max-content;min-width:100%}
+nav li{scroll-snap-align:center}
+nav a{display:flex;align-items:center;min-height:44px;padding:0 1.1rem;white-space:nowrap;border-radius:99px;border:1.5px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;touch-action:manipulation}
+nav a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav a:active{transform:scale(.96)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:1.1rem var(--gx) 1.5rem}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem}
+section.cat{background:var(--surface);border:2px solid var(--ink);border-radius:20px;padding:1rem 1rem .6rem}
+section.cat h3{font:700 1.55rem/1.2 "Reem Kufi","Cairo",sans-serif;margin:0 0 .2rem;color:var(--accent)}
+.sub{margin:0 0 .3rem;color:var(--muted);font-size:.95rem}
+ul.items{list-style:none;margin:0;padding:0}
+.items li{display:flex;align-items:baseline;gap:.5rem;min-height:44px;padding:.5rem 0;border-top:1px solid var(--line)}
+.items li:first-child{border-top:0}
+.name{font-weight:600;font-size:1.05rem;min-width:0}
+.note{display:block;font-weight:400;font-size:.88rem;color:var(--muted)}
+.dots{flex:1;border-bottom:2px dotted var(--line);min-width:.75rem;transform:translateY(-.3em)}
+.price{font-weight:700;font-size:1.15rem;white-space:nowrap;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.price i{font-style:normal;font-size:.72rem;font-weight:600;color:var(--muted);margin-inline-start:.25rem}
+.promo{background:var(--saffron);color:var(--saffron-ink);border-radius:20px;padding:1.2rem 1rem;text-align:center}
+.promo h3{font:700 1.8rem/1.2 "Reem Kufi","Cairo",sans-serif;margin:0}
+.promo p{margin:.2rem 0;font-size:1.2rem;font-weight:700}
+footer{text-align:center;padding:1rem var(--gx) 5rem;font:700 1.2rem "Reem Kufi",sans-serif;color:var(--accent)}
+footer img{display:block;width:56px;height:56px;margin:0 auto .3rem;border-radius:50%}
+#up{position:fixed;inset-block-end:calc(1rem + env(safe-area-inset-bottom,0px));inset-inline-start:max(1rem,env(safe-area-inset-left));width:48px;height:48px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:1.4rem;line-height:1;opacity:0;pointer-events:none;transition:opacity .2s;z-index:25;touch-action:manipulation}
+#up.show{opacity:.92;pointer-events:auto}
+@media(min-width:640px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;align-items:start}
+  section.cat{padding:1.2rem 1.4rem .8rem}
+}
+@media(min-width:900px){
+  :root{--nav:64px}
+  header{padding-top:1.8rem;padding-bottom:2.8rem}
+  .logo{width:112px;height:112px}
+  .brand{font-size:4rem}
+  nav ul{justify-content:center;width:auto}
+  main{padding-top:2rem}
+  .grid{gap:1.5rem}
+  nav a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+}
